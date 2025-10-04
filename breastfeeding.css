@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+/* 僅供哺乳室查詢頁面使用 */
+
+/* 版面：覆寫本頁主內容為靠左 */
+.bf-page .main-content {
+  flex: 1;
+  padding: 10px 40px 20px 40px;
+  text-align: left;
+  margin-left: 240px;
+  background-color: white;
+  box-shadow: none;
+  border-radius: 0;
+  min-height: calc(100vh - 160px);
+  margin-top: 10px;
+}
+
+/* 搜尋表單：欄位、按鈕與排版 */
+.bf-search .form-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.bf-page .bf-search {
+  max-width: 520px;
+  margin-top: 12px;
+}
+
+.bf-page .bf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.bf-page .bf-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bf-page .bf-field label {
+  display: inline-block;
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.bf-page .bf-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 35px;
+}
+
+.bf-page h1.welcome { 
+  margin-bottom: 20px;
+  text-align: left !important;
+  font-size: 2.5rem !important;
+  color: #333 !important;
+  font-weight: 700 !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.bf-page .bf-results { 
+  margin-top: 30px;
+}
+
+.bf-search .form-row label {
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.bf-search button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #94ab93;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bf-search button:hover {
+  background-color: #8ab78a;
+}
+
+.bf-search button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* 查詢結果 */
+.bf-results {
+  text-align: left;
+  margin-top: 40px;
+}
+
+.bf-item {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.bf-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* 響應式設計 - 改善小螢幕顯示 */
+@media (max-width: 768px) {
+  .bf-page .main-content {
+    margin-left: 0;
+    padding: 20px 15px;
+  }
+  
+  .bf-page .bf-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .bf-page .bf-field {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .bf-page .bf-field label {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  .bf-page .bf-actions {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .bf-page h1.welcome {
+    font-size: 2rem !important;
+    margin-bottom: 15px;
+  }
+  
+  .bf-search button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bf-page .main-content {
+    padding: 15px 10px;
+  }
+  
+  .bf-page h1.welcome {
+    font-size: 1.8rem !important;
+    margin-bottom: 12px;
+  }
+  
+  .bf-page .bf-search {
+    max-width: 100%;
+  }
+  
+  .bf-search button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
+
+

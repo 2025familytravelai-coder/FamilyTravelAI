@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>哺乳室查詢 - Family Travel AI</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="breastfeeding.css">
+</head>
+<body class="bf-page">
+
+  <header>
+    <div class="header-left">
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="開啟選單">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="logo">
+        <a href="index.html" class="logo-link">Family Travel AI</a>
+      </div>
+    </div>
+    <nav>
+      <div class="user-dropdown">
+        <div class="user-avatar" id="userAvatar">
+          <img src="img/帳戶.png" alt="頭像" class="avatar-img" id="avatarImage">
+          <span class="dropdown-arrow">▼</span>
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="account.html" class="dropdown-item">
+            <img src="img/帳戶.png" alt="帳號設定" class="dropdown-icon-img">
+            帳號設定
+          </a>
+          <a href="#" class="dropdown-item">
+            <img src="img/問題回報.png" alt="問題回報" class="dropdown-icon-img">
+            問題回報
+          </a>
+          <a href="#" class="dropdown-item" onclick="logout(); return false;">
+            <img src="img/out.png" alt="登出" class="dropdown-icon-img">
+            登出
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <ul>
+        <li class="sidebar-link"><a href="chat.html" class="chat">聊天助手</a></li>
+        <li class="sidebar-link active"><a href="breastfeeding.html" class="breastfeeding">哺乳室查詢</a></li>
+        <li class="sidebar-link"><a href="weather.html" class="weather">天氣資訊</a></li>
+        <li class="sidebar-link"><a href="plan.html" class="plan">行程規劃</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <h1 class="welcome">哺乳室查詢</h1>
+      <section class="bf-search">
+        <div class="bf-grid">
+          <div class="bf-field">
+            <label for="county">縣市</label>
+            <div class="searchable-select">
+              <input type="text" id="countySearch" placeholder="搜尋縣市..." autocomplete="off">
+              <select id="county" size="5" style="display:none;">
+                <option value="">請選擇</option>
+              </select>
+            </div>
+          </div>
+          <div class="bf-field">
+            <label for="district">地區</label>
+            <div class="searchable-select">
+              <input type="text" id="districtSearch" placeholder="搜尋地區..." autocomplete="off" disabled>
+              <select id="district" size="5" style="display:none;" disabled>
+                <option value="">請先選擇縣市</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="bf-actions">
+          <button id="useLocation" type="button">使用目前定位查詢</button>
+          <button id="searchByArea" type="button">以縣市/地區查詢</button>
+        </div>
+      </section>
+
+      <section id="results" class="bf-results">
+        <h2 style="font-size:18px;margin:0 0 8px 0;">查詢結果</h2>
+        <div id="resultList" class="result-list">
+          <p style="color:#666;">請以定位或選擇縣市/地區後進行查詢。</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p><small>Copyright © Family Travel AI All Rights Reserved.</small></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="breastfeeding.js"></script>
+  <script>
+    // 直接定義登出函數
+    function logout() {
+      console.log('登出函數被調用');
+      alert('已成功登出！');
+      
+      // 清除所有登入相關的資料
+      localStorage.removeItem('user');
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('loginTime');
+      localStorage.removeItem('rememberMe');
+      localStorage.removeItem('userAvatar');
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('isLoggedIn');
+      
+      // 跳轉到登入頁面
+      window.location.href = 'login.html';
+    }
+    
+    // 確保函數在全域範圍內可用
+    window.logout = logout;
+    
+    console.log('登出函數已定義，類型:', typeof logout);
+  </script>
+</body>
+</html>

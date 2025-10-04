@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>天氣資訊 - Family Travel AI</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="weather.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="開啟選單">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="logo">
+        <a href="index.html" class="logo-link">Family Travel AI</a>
+      </div>
+    </div>
+    <nav>
+      <div class="user-dropdown">
+        <div class="user-avatar" id="userAvatar">
+          <img src="img/帳戶.png" alt="頭像" class="avatar-img" id="avatarImage">
+          <span class="dropdown-arrow">▼</span>
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="account.html" class="dropdown-item">
+            <img src="img/帳戶.png" alt="帳號設定" class="dropdown-icon-img">
+            帳號設定
+          </a>
+          <a href="#" class="dropdown-item">
+            <img src="img/問題回報.png" alt="問題回報" class="dropdown-icon-img">
+            問題回報
+          </a>
+          <a href="#" class="dropdown-item" onclick="logout(); return false;">
+            <img src="img/out.png" alt="登出" class="dropdown-icon-img">
+            登出
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <ul>
+        <li class="sidebar-link"><a href="chat.html" class="chat">聊天助手</a></li>
+        <li class="sidebar-link"><a href="breastfeeding.html" class="breastfeeding">哺乳室查詢</a></li>
+        <li class="sidebar-link active"><a href="weather.html" class="weather">天氣資訊</a></li>
+        <li class="sidebar-link"><a href="plan.html" class="plan">行程規劃</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content weather-page">
+      <h1 class="welcome">天氣資訊</h1>
+      
+      <!-- 搜尋區域 -->
+      <div class="search-section">
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="輸入城市名稱..." value="臺北" />
+          <button id="search-btn">搜尋</button>
+          <button id="location-btn" title="使用目前位置" aria-label="使用目前位置"></button>
+        </div>
+      </div>
+
+      <!-- 載入中提示 -->
+      <div id="loading" class="loading" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>載入天氣資料中...</p>
+      </div>
+
+      <!-- 錯誤訊息 -->
+      <div id="error-message" class="error-message" style="display: none;"></div>
+
+      <!-- 天氣資訊容器 - 左右分欄 -->
+      <div class="weather-container">
+        <!-- 左側：當前天氣 -->
+        <div class="weather-left">
+          <div id="current-weather" class="current-weather">
+            <!-- 天氣資料將在這裡動態載入 -->
+          </div>
+        </div>
+
+        <!-- 右側：5天預報 -->
+        <div class="weather-right">
+          <div id="forecast" class="forecast-section">
+            <!-- 預報資料將在這裡動態載入 -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p><small>Copyright © Family Travel AI All Rights Reserved.</small></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="weather.js"></script>
+  <script>
+    // 直接定義登出函數
+    function logout() {
+      console.log('登出函數被調用');
+      alert('已成功登出！');
+      
+      // 清除所有登入相關的資料
+      localStorage.removeItem('user');
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('loginTime');
+      localStorage.removeItem('rememberMe');
+      localStorage.removeItem('userAvatar');
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('isLoggedIn');
+      
+      // 跳轉到登入頁面
+      window.location.href = 'login.html';
+    }
+    
+    // 確保函數在全域範圍內可用
+    window.logout = logout;
+    
+    console.log('登出函數已定義，類型:', typeof logout);
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Travel AI - 重設密碼</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .success {
+            color: #28a745;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .info {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 密碼重設</h1>
+        <div class="success">✅ 重設連結已準備好！</div>
+        
+        <div class="info">
+            <p>請點擊下方按鈕來重設您的密碼：</p>
+        </div>
+        
+        <a href="#" id="resetLink" class="btn">重設密碼</a>
+        
+        <div class="info">
+            <p><strong>注意事項：</strong></p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>此連結將在 24 小時後過期</li>
+                <li>此連結只能使用一次</li>
+                <li>如果按鈕無法點擊，請複製下方網址到瀏覽器</li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <p><strong>網址：</strong></p>
+            <p id="urlText" style="word-break: break-all; background-color: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace;"></p>
+        </div>
+    </div>
+
+    <script>
+        // 從 URL 參數中獲取 token 和 email
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const email = urlParams.get('email');
+        const timestamp = urlParams.get('timestamp');
+        
+        if (token && email && timestamp) {
+            // 構建重設密碼頁面的連結
+            const resetUrl = `./reset-password.html?token=${token}&email=${encodeURIComponent(email)}&timestamp=${timestamp}`;
+            
+            // 設置按鈕連結
+            document.getElementById('resetLink').href = resetUrl;
+            
+            // 顯示完整網址
+            const fullUrl = window.location.href.replace('index.html', 'reset-password.html') + `?token=${token}&email=${encodeURIComponent(email)}&timestamp=${timestamp}`;
+            document.getElementById('urlText').textContent = fullUrl;
+            
+            // 立即跳轉到重設密碼頁面
+            window.location.href = resetUrl;
+        } else {
+            document.querySelector('.success').textContent = '❌ 無效的重設連結';
+            document.querySelector('.success').style.color = '#dc3545';
+            document.getElementById('resetLink').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

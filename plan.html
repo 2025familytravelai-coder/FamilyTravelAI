@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" >
+  <title>行程規劃 - Family Travel AI</title>
+  <link rel="stylesheet" href="style.css" >
+  <link rel="stylesheet" href="plan.css" >
+</head>
+<body class="plan-page">
+
+  <header>
+    <div class="header-left">
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="開啟選單">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="logo">
+        <a href="index.html" class="logo-link">Family Travel AI</a>
+      </div>
+    </div>
+    <nav>
+      <div class="user-dropdown">
+        <div class="user-avatar" id="userAvatar">
+          <img src="img/帳戶.png" alt="頭像" class="avatar-img" id="avatarImage">
+          <span class="dropdown-arrow">▼</span>
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="account.html" class="dropdown-item">
+            <img src="img/帳戶.png" alt="帳號設定" class="dropdown-icon-img">
+            帳號設定
+          </a>
+          <a href="#" class="dropdown-item">
+            <img src="img/問題回報.png" alt="問題回報" class="dropdown-icon-img">
+            問題回報
+          </a>
+          <a href="#" class="dropdown-item" onclick="logout(); return false;">
+            <img src="img/out.png" alt="登出" class="dropdown-icon-img">
+            登出
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <aside class="sidebar">
+      <ul>
+        <li class="sidebar-link"><a href="chat.html"        class="chat">聊天助手</a></li>
+        <li class="sidebar-link"><a href="breastfeeding.html" class="breastfeeding">哺乳室查詢</a></li>
+        <li class="sidebar-link"><a href="weather.html"      class="weather">天氣資訊</a></li>
+        <li class="sidebar-link active"><a href="plan.html"   class="plan">行程規劃</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+
+      <!-- 行程規劃排版容器 -->
+      <div class="plan-container">
+
+        <!-- 日曆＋按鈕 垂直包裹 -->
+        <div class="calendar-group">
+          <!-- 日曆卡片 -->
+          <div class="calendar">
+            <div class="calendar-nav">
+              <button id="prev-month">&lt;</button>
+              <span class="month-year" id="month-year"></span>
+              <button id="next-month">&gt;</button>
+            </div>
+            <table class="calendar-table">
+              <thead>
+                <tr>
+                  <th>日</th><th>一</th><th>二</th>
+                  <th>三</th><th>四</th><th>五</th><th>六</th>
+                </tr>
+              </thead>
+              <tbody id="calendar-body"></tbody>
+            </table>
+          </div>
+          <!-- 按鈕區 -->
+          <div class="calendar-actions">
+            <button id="quick-plan-btn" class="action-btn">快速幫我安排行程</button>
+            <button id="cost-calc-btn" class="action-btn">計算旅遊成本</button>
+          </div>
+        </div>
+
+        <!-- 2. 行程清單區 -->
+        <div class="itinerary-panel">
+          <h2>今日旅遊行程</h2>
+          <ul id="itinerary-list">
+            <li class="empty">今日尚無行程</li>
+          </ul>
+          <div class="itinerary-actions">
+            <button class="quick-edit">快速編輯</button>
+            <button class="add-today">新增行程</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- 旅遊成本彈窗 -->
+  <div class="modal-overlay" id="costModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card" role="document">
+      <div class="modal-header">
+        <div class="modal-title">計算旅遊成本</div>
+        <button class="modal-close-btn" id="closeCostModal" aria-label="關閉">×</button>
+      </div>
+      <div class="modal-body">
+        <!-- 左右並排：小日曆 + 成本表 -->
+        <div class="cost-flex">
+          <div class="calendar cost-calendar">
+            <div class="calendar-nav">
+              <button id="cost-prev-month">&lt;</button>
+              <span class="month-year" id="cost-month-year"></span>
+              <button id="cost-next-month">&gt;</button>
+            </div>
+            <table class="calendar-table">
+              <thead>
+                <tr>
+                  <th>日</th><th>一</th><th>二</th>
+                  <th>三</th><th>四</th><th>五</th><th>六</th>
+                </tr>
+              </thead>
+              <tbody id="cost-calendar-body"></tbody>
+            </table>
+          </div>
+
+          <div class="cost-panel">
+            <div class="cost-date" id="cost-date-text">—</div>
+
+            <div class="scheme-grid">
+            <div class="scheme" data-scheme="A">
+              <div class="scheme-header">
+                <input class="scheme-name" id="schemeAName" value="方案A" />
+                <div class="scheme-actions">
+                  <button class="btn btn-secondary add-row" data-scheme="A">新增一筆</button>
+                </div>
+              </div>
+              <table class="cost-table">
+                <thead>
+                  <tr>
+                    <th>支出類型</th>
+                    <th>備註</th>
+                    <th>金額</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="schemeA-rows"></tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="2" class="cost-total-label">總計</td>
+                    <td class="cost-total" id="schemeA-total">0</td>
+                    <td></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div class="scheme" data-scheme="B">
+              <div class="scheme-header">
+                <input class="scheme-name" id="schemeBName" value="方案B" />
+                <div class="scheme-actions">
+                  <button class="btn btn-secondary add-row" data-scheme="B">新增一筆</button>
+                </div>
+              </div>
+              <table class="cost-table">
+                <thead>
+                  <tr>
+                    <th>支出類型</th>
+                    <th>備註</th>
+                    <th>金額</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="schemeB-rows"></tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="2" class="cost-total-label">總計</td>
+                    <td class="cost-total" id="schemeB-total">0</td>
+                    <td></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            </div>
+
+            <div class="cost-actions">
+              <button class="btn btn-primary" id="save-cost">儲存</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><small>Copyright © Family Travel AI All Rights Reserved.</small></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="plan.js"></script>
+  <script>
+    // 直接定義登出函數
+    function logout() {
+      console.log('登出函數被調用');
+      alert('已成功登出！');
+      
+      // 清除所有登入相關的資料
+      localStorage.removeItem('user');
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('loginTime');
+      localStorage.removeItem('rememberMe');
+      localStorage.removeItem('userAvatar');
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('isLoggedIn');
+      
+      // 跳轉到登入頁面
+      window.location.href = 'login.html';
+    }
+    
+    // 確保函數在全域範圍內可用
+    window.logout = logout;
+    
+    console.log('登出函數已定義，類型:', typeof logout);
+  </script>
+</body>
+</html>

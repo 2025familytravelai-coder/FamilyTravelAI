@@ -1,0 +1,151 @@
+ <!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>註冊 - Family Travel AI</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <!-- Logo 區域 -->
+    <div class="logo-section">
+      <div class="logo-container">
+        <img src="img/綠有框.png" alt="Family Travel AI" class="main-logo" />
+      </div>
+      <h1 class="app-title">Family Travel AI</h1>
+      <p class="app-subtitle">讓AI成為您家庭旅行的最佳夥伴</p>
+    </div>
+
+    <!-- 註冊表單 -->
+    <div class="login-form-section">
+      <form class="login-form" id="signupForm">
+        <h2 class="form-title">建立新帳戶</h2>
+        <p class="form-subtitle">請填寫以下資訊來建立您的帳戶</p>
+        
+        <div class="form-group">
+          <label for="firstName" class="form-label">姓名</label>
+          <div class="input-container">
+            <input 
+              type="text" 
+              id="firstName" 
+              name="firstName" 
+              class="form-input" 
+              placeholder="請輸入您的姓名"
+              required
+            />
+            <div class="input-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">電子郵件</label>
+          <div class="input-container">
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-input" 
+              placeholder="請輸入您的電子郵件"
+              required
+            />
+            <div class="input-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">密碼</label>
+          <div class="input-container">
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="form-input" 
+              placeholder="請輸入密碼（至少6個字元）"
+              required
+            />
+            <button type="button" class="password-toggle" id="passwordToggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="password-requirements">
+            <small>密碼需至少6個字元，包含英文字母與數字</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">確認密碼</label>
+          <div class="input-container">
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              name="confirmPassword" 
+              class="form-input" 
+              placeholder="請再次輸入密碼"
+              required
+            />
+            <button type="button" class="password-toggle" id="confirmPasswordToggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="remember-me">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
+            <span class="checkmark"></span>
+            我同意 <a href="#" class="terms-link">服務條款</a> 和 <a href="#" class="terms-link">隱私政策</a>
+          </label>
+        </div>
+
+        <button type="submit" class="login-btn" id="signupBtn">
+          <span class="btn-text">建立帳戶</span>
+          <div class="btn-loading" style="display: none;">
+            <div class="spinner"></div>
+          </div>
+        </button>
+
+        <div class="back-to-login">
+          <a href="login.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+            已有帳戶？返回登入
+          </a>
+        </div>
+      </form>
+    </div>
+
+    <!-- 背景裝飾 -->
+    <div class="background-decoration">
+      <div class="decoration-circle circle-1"></div>
+      <div class="decoration-circle circle-2"></div>
+      <div class="decoration-circle circle-3"></div>
+    </div>
+  </div>
+
+  <!-- 訊息提示 -->
+  <div class="message-toast" id="messageToast" style="display: none;">
+    <span class="message-text"></span>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>

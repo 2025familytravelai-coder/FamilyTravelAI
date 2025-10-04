@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>帳號設定 - Family Travel AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="account-page">
+
+  <!-- 頁首 -->
+  <header>
+    <div class="header-left">
+      <button class="hamburger-menu" id="hamburgerMenu" aria-label="開啟選單">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="logo">
+        <a href="index.html" class="logo-link">Family Travel AI</a>
+      </div>
+    </div>
+    <nav>
+      <div class="user-dropdown">
+        <div class="user-avatar" id="userAvatar">
+          <img src="img/帳戶.png" alt="頭像" class="avatar-img" id="avatarImage">
+          <span class="dropdown-arrow">▼</span>
+        </div>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="account.html" class="dropdown-item">
+            <img src="img/帳戶.png" alt="帳號設定" class="dropdown-icon-img">
+            帳號設定
+          </a>
+          <a href="#" class="dropdown-item">
+            <img src="img/問題回報.png" alt="問題回報" class="dropdown-icon-img">
+            問題回報
+          </a>
+          <a href="#" class="dropdown-item" onclick="console.log('登出按鈕被點擊'); logout(); return false;">
+            <img src="img/out.png" alt="登出" class="dropdown-icon-img">
+            登出
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <!-- 側邊欄 -->
+    <aside class="sidebar">
+      <ul>
+        <li class="sidebar-link"><a href="chat.html" class="chat">聊天助手</a></li>
+        <li class="sidebar-link"><a href="breastfeeding.html" class="breastfeeding">哺乳室查詢</a></li>
+        <li class="sidebar-link"><a href="weather.html" class="weather">天氣資訊</a></li>
+        <li class="sidebar-link"><a href="plan.html" class="plan">行程規劃</a></li>
+      </ul>
+    </aside>
+
+    <!-- 主要內容 -->
+    <main class="main-content account-page">
+
+      <div class="account-container">
+        <!-- 左側：頭像區域 -->
+        <div class="avatar-section">
+          <div class="avatar-container">
+            <div class="avatar-placeholder" id="avatar-placeholder">
+              <div class="avatar-icon">👤</div>
+            </div>
+            <button type="button" class="change-avatar-btn" id="change-avatar-btn">更換頭像</button>
+          </div>
+        </div>
+
+        <!-- 右側：帳號資訊 -->
+        <div class="account-info-section">
+          <form id="account-form">
+            <!-- 會員編號（不可編輯） -->
+            <div class="form-group readonly">
+              <label for="member-id">會員編號</label>
+              <div class="input-container">
+                <input type="text" id="member-id" name="member_id" value="載入中..." readonly>
+                <div class="loading-indicator" id="member-id-loading" style="display: none;">
+                  <div class="spinner"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 姓氏（可編輯） -->
+            <div class="form-group editable">
+              <label for="last-name">姓氏</label>
+              <div class="input-container">
+                <input type="text" id="last-name" name="last_name" placeholder="請輸入您的姓氏" value="" readonly>
+                <button type="button" class="edit-btn" data-field="last-name" data-mode="edit" title="編輯">
+                  <img src="img/編輯.png" alt="編輯" style="width:25px;height:25px;vertical-align:middle;">
+                </button>
+              </div>
+            </div>
+
+            <!-- 名字（可編輯） -->
+            <div class="form-group editable">
+              <label for="first-name">名字</label>
+              <div class="input-container">
+                <input type="text" id="first-name" name="first_name" placeholder="請輸入您的名字" value="" readonly>
+                <button type="button" class="edit-btn" data-field="first-name" data-mode="edit" title="編輯">
+                  <img src="img/編輯.png" alt="編輯" style="width:25px;height:25px;vertical-align:middle;">
+                </button>
+              </div>
+            </div>
+
+            <!-- 電子郵件（可編輯） -->
+            <div class="form-group editable">
+              <label for="email">電子郵件</label>
+              <div class="input-container">
+                <input type="email" id="email" name="email" placeholder="example@gmail.com" value="" readonly>
+                <button type="button" class="edit-btn" data-field="email" data-mode="edit" title="編輯">
+                  <img src="img/編輯.png" alt="編輯" style="width:25px;height:25px;vertical-align:middle;">
+                </button>
+              </div>
+            </div>
+
+            <!-- 修改密碼按鈕 -->
+            <div class="form-actions">
+              <button type="button" class="change-password-btn" id="change-password-btn">修改密碼</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p><small>Copyright © Family Travel AI All Rights Reserved.</small></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="sidebar.js"></script>
+  <script src="account.js"></script>
+  <script>
+    // 強制刷新版本 - 直接定義登出函數
+    console.log('=== 開始載入登出函數 ===');
+    
+    function logout() {
+      console.log('🚪 登出函數被調用！');
+      alert('已成功登出！');
+      
+      // 清除所有登入相關的資料
+      localStorage.removeItem('user');
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('loginTime');
+      localStorage.removeItem('rememberMe');
+      localStorage.removeItem('userAvatar');
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('isLoggedIn');
+      
+      console.log('🧹 已清除登入資料');
+      
+      // 跳轉到登入頁面
+      console.log('🔄 正在跳轉到登入頁面...');
+      window.location.href = 'login.html';
+    }
+    
+    // 確保函數在全域範圍內可用
+    window.logout = logout;
+    
+    console.log('✅ 登出函數已定義，類型:', typeof logout);
+    console.log('=== 登出函數載入完成 ===');
+    
+    // 測試函數是否可用
+    setTimeout(function() {
+      if (typeof window.logout === 'function') {
+        console.log('✅ 登出函數確認可用');
+      } else {
+        console.log('❌ 登出函數不可用');
+      }
+    }, 100);
+  </script>
+</body>
+</html>

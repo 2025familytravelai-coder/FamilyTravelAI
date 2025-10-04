@@ -1,0 +1,50 @@
+<!-- 問題回報 - 共用模板（被 sidebar.js 動態載入） -->
+<div class="modal-overlay" id="feedbackModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-card" role="document">
+    <div class="modal-header">
+      <div class="modal-title">問題回報</div>
+      <button class="modal-close-btn" id="closeFeedbackModal" aria-label="關閉">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label for="feedbackType">問題類型</label>
+        <select id="feedbackType">
+          <option value="">請選擇</option>
+          <option>功能異常</option>
+          <option>介面調整建議</option>
+          <option>資料錯誤</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="feedbackDesc">詳細描述</label>
+        <textarea id="feedbackDesc" placeholder="請敘述遇到的情況或期望的結果..."></textarea>
+      </div>
+      <div class="form-row">
+        <label for="feedbackEmail">聯絡信箱（選填）</label>
+        <input type="email" id="feedbackEmail" placeholder="example@gmail.com">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="cancelFeedback">取消</button>
+      <button class="btn btn-primary" id="submitFeedback">送出</button>
+    </div>
+  </div>
+  
+</div>
+
+<!-- 問題回報 - 成功提示彈窗 -->
+<div class="modal-overlay" id="feedbackSuccess" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-success">
+      <h4>已收到您的回報！</h4>
+      <p>感謝協助我們讓 Family Travel AI 更好。</p>
+      <div style="margin-top:14px;text-align:center">
+        <button class="btn btn-primary" id="closeSuccess">關閉</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
